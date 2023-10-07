@@ -25,9 +25,13 @@ app.get('/admin', (req, res) => {
   res.send('Admin Homepage')
 })
 
-//http://localhost:3000/user/100
-app.get("/name/:id", (req, res)=> {
-      res.send(`<h1>Utsav: ${req.params.id}</h1>`);
+//http://localhost:3000/name
+app.get("/name", (req, res)=> {
+      const path = require('path');
+      const filePath = path.join(__dirname, 'index.html');
+  
+
+      res.sendFile(filePath);
     }
 )
 
