@@ -27,7 +27,7 @@ app.get('/admin', (req, res) => {
 
 //http://localhost:3000/user/100
 app.get("/user/:id", (req, res)=> {
-      res.send(`User ID: ${req.params.id}`);
+      res.send(`Student ID: ${req.params.id}`);
     }
 )
 
