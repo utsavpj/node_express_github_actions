@@ -26,15 +26,11 @@ app.get('/admin', (req, res) => {
 })
 
 //http://localhost:3000/user/100
-app.get("/user/:id", (req, res)=> {
-      res.send(`Student ID: ${req.params.id}`);
+app.get("/name/:id", (req, res)=> {
+      res.send(`<h1>Utsav: ${req.params.id}</h1>`);
     }
 )
 
-app.get("/name/:id", (req, res)=> {
-  res.send(`<h1>Utsav - ${req.params.id} </h1>`);
-}
-)
 
 //http://localhost:3000/valueofday/1980-01-24
 app.get("/valueofday/:year(\\d{4})-:month(\\d{2})-:day(\\d{2})", (req, res) => {
