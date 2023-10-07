@@ -31,6 +31,11 @@ app.get("/user/:id", (req, res)=> {
     }
 )
 
+app.get("/name/:id", (req, res)=> {
+  res.send(`<h1>Utsav - ${req.params.id} </h1>`);
+}
+)
+
 //http://localhost:3000/valueofday/1980-01-24
 app.get("/valueofday/:year(\\d{4})-:month(\\d{2})-:day(\\d{2})", (req, res) => {
   console.log(req.params)
