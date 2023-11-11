@@ -1,4 +1,4 @@
-name: Deploy to Azure
+name: Docker Build and Push
 
 on:
   push:
@@ -10,17 +10,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Clear Action Cache
+      run: |
+        npm cache clean --force
+        yarn cache clean
+      if: success()
+
     - name: Checkout code
       uses: actions/checkout@v2
 
     - name: Set up Node.js
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v3
       with:
         node-version: '16'
 
-    - name: Build and push Docker image
-      run: |
-        docker build -t utsavjpatel/node_express_github_express:latest .
-        docker login -u utsavjpatel -p Whyshouldi@14
-        docker push utsavjpatel/node_express_github_express:latest
+    - name: Set up Docker
+      uses: docker/setup-docker@v2
 
+    - name: Build and push Docker image
+      env:
+        DOCKER_USERNAME: utsavjpatel
+        DOCKER_PASSWORD: Whyshouldi@14
+      run: |
+        docker build -t yourdockerhubusername/yourimage:latest .
+        echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+        docker push yourdockerhubusername/yourimage:latest
